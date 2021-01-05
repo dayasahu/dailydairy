@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DeliveryRestController {
 
-	@GetMapping
+	@GetMapping("/test")
 	public String testService() {
 		
 		return "This is dairy delivery app" ;
