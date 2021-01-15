@@ -27,6 +27,34 @@ import lombok.Data;
 @JsonIgnoreProperties(value = { "createdAt", "updatedAt" }, allowGetters = true)
 public class Customer implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String first_name;
+	private String last_name;
+	private Long phone_num;
+	private String email;
+	private String isActive;
+	private Long agentId;
+	private Long subscriptionId;
+	private Long areaId;
+	private Long routeId;
+
+	@Column(nullable = false, updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreatedDate
+	private Date createdAt;
+
+	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@LastModifiedDate
+	private Date updatedAt;
+
 	public Long getId() {
 		return id;
 	}
@@ -114,27 +142,12 @@ public class Customer implements Serializable {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public String getIsActive() {
+		return isActive;
+	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String first_name;
-	private String last_name;
-	private Long phone_num;
-	private String email;
-	private Long agentId;
-	private Long subscriptionId;
-	private Long areaId;
-	private Long routeId;
-
-	@Column(nullable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	@CreatedDate
-	private Date createdAt;
-
-	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	@LastModifiedDate
-	private Date updatedAt;
-
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
+	}
+	
 }
