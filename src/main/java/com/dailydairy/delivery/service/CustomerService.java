@@ -20,7 +20,7 @@ public class CustomerService {
 	@Autowired
 	private  CustomerRepo repo;
 	
-	public Iterable<Customer>  findAll() {
+	public List<Customer>  findAll() {
         return repo.findAll();
     }
      
