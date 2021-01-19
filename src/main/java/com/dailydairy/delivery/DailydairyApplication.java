@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.dailydairy.delivery.entity.Customer;
 import com.dailydairy.delivery.service.CustomerService;
 
@@ -29,9 +30,9 @@ public class DailydairyApplication {
 	private CustomerService customerService;
 
 	@Bean
-	public Function<String, String> function() {
+	public Function<APIGatewayProxyRequestEvent, String> function() {
 
-		return input -> input;
+		return input -> input.getBody();
 	}
 
 	@Bean
@@ -42,6 +43,6 @@ public class DailydairyApplication {
 
 	@Bean
 	public Supplier<List<Customer>> customers() {
-		return () -> customerService.findAll();
+	return () -> customerService.findAll();
 	}
 }
