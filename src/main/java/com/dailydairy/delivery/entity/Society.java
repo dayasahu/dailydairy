@@ -12,18 +12,19 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "Query")
+@Table(name = "Society")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = { "createdAt", "updatedAt" }, allowGetters = true)
-public class Query {
+public class Society {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String comment;
-	private String customerId;
-	private String status;
-	private String assignedTo;
+	private String name;
+	private String fullAddress;
+	private String GatNumber;
+	private String agentId;
+	private String RouteId;
 	private String isActive;
 
 	public Long getId() {
@@ -34,32 +35,44 @@ public class Query {
 		this.id = id;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getName() {
+		return name;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getCustomerId() {
-		return customerId;
+	public String getFullAddress() {
+		return fullAddress;
 	}
 
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+	public void setFullAddress(String fullAddress) {
+		this.fullAddress = fullAddress;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getGatNumber() {
+		return GatNumber;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setGatNumber(String gatNumber) {
+		GatNumber = gatNumber;
 	}
 
-	public String getAssignedTo() {
-		return assignedTo;
+	public String getAgentId() {
+		return agentId;
+	}
+
+	public void setAgentId(String agentId) {
+		this.agentId = agentId;
+	}
+
+	public String getRouteId() {
+		return RouteId;
+	}
+
+	public void setRouteId(String routeId) {
+		RouteId = routeId;
 	}
 
 	public String getIsActive() {
@@ -69,9 +82,4 @@ public class Query {
 	public void setIsActive(String isActive) {
 		this.isActive = isActive;
 	}
-
-	public void setAssignedTo(String assignedTo) {
-		this.assignedTo = assignedTo;
-	}
-
 }

@@ -12,18 +12,19 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "Query")
+@Table(name = "Route")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = { "createdAt", "updatedAt" }, allowGetters = true)
-public class Query {
+public class Route {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String comment;
-	private String customerId;
-	private String status;
-	private String assignedTo;
+	private String name;
+	private String primaryAgentId;
+	private String source;
+	private String destination;
+	private String secondaryAgentId;
 	private String isActive;
 
 	public Long getId() {
@@ -34,32 +35,44 @@ public class Query {
 		this.id = id;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getName() {
+		return name;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getCustomerId() {
-		return customerId;
+	public String getPrimaryAgentId() {
+		return primaryAgentId;
 	}
 
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+	public void setPrimaryAgentId(String primaryAgentId) {
+		this.primaryAgentId = primaryAgentId;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getSource() {
+		return source;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setSource(String source) {
+		this.source = source;
 	}
 
-	public String getAssignedTo() {
-		return assignedTo;
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+	public String getSecondaryAgentId() {
+		return secondaryAgentId;
+	}
+
+	public void setSecondaryAgentId(String secondaryAgentId) {
+		this.secondaryAgentId = secondaryAgentId;
 	}
 
 	public String getIsActive() {
@@ -68,10 +81,6 @@ public class Query {
 
 	public void setIsActive(String isActive) {
 		this.isActive = isActive;
-	}
-
-	public void setAssignedTo(String assignedTo) {
-		this.assignedTo = assignedTo;
 	}
 
 }

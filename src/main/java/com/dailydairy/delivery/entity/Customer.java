@@ -19,8 +19,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "Customer")
 @EntityListeners(AuditingEntityListener.class)
@@ -142,6 +140,7 @@ public class Customer implements Serializable {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
 	public String getIsActive() {
 		return isActive;
 	}
@@ -149,5 +148,5 @@ public class Customer implements Serializable {
 	public void setIsActive(String isActive) {
 		this.isActive = isActive;
 	}
-	
+
 }

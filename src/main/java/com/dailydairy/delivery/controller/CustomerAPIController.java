@@ -1,5 +1,7 @@
 package com.dailydairy.delivery.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dailydairy.delivery.entity.Customer;
-
 import com.dailydairy.delivery.service.CustomerService;
 
 @RestController
@@ -21,9 +22,8 @@ public class CustomerAPIController {
 	@Autowired
 	private CustomerService customerService;
 
-	
 	@GetMapping("/getallcustomers")
-	public Iterable<Customer> getCustomers() {
+	public List<Customer> getCustomers() {
 		return customerService.findAll();
 
 	}
@@ -48,10 +48,10 @@ public class CustomerAPIController {
 		return "Customer Detail updated Successfully";
 
 	}
-	
+
 	@DeleteMapping("/deactivateCustomers/{id}")
 	public String deleteCustomer(@PathVariable Long id) {
-		Customer cust= customerService.find(id);
+		Customer cust = customerService.find(id);
 		cust.setIsActive("N");
 		customerService.save(cust);
 		return "Customer Deleted Successfully";
