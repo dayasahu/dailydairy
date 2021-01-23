@@ -18,7 +18,7 @@ import com.dailydairy.delivery.service.RouteService;
 
 @RestController
 @RequestMapping("dailydairyRest")
-public class RouteController {
+public class RouteAPIController {
 
 	@Autowired
 	private RouteService routeservice;
