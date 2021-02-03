@@ -27,7 +27,11 @@ public class CustomerService {
 	}
 
 	public Customer find(Long id) {
-		return repo.findById(id).orElseThrow(() -> new NotRecordFoundException(id));
+		return repo.findById(id).orElseThrow(() -> new NotRecordFoundException());
+	}
+
+	public Customer findByPhoneNum(String phnNum) {
+		return repo.findByphoneNum(phnNum).orElseThrow(() -> new NotRecordFoundException());
 	}
 
 	public void delete(Long id) {

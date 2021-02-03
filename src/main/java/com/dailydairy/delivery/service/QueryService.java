@@ -27,7 +27,7 @@ public class QueryService {
 	}
 
 	public Query find(Long id) {
-		return repo.findById(id).orElseThrow(() -> new NotRecordFoundException(id));
+		return repo.findById(id).orElseThrow(() -> new NotRecordFoundException());
 	}
 
 	public void delete(Long id) {

@@ -33,7 +33,9 @@ public class CustomerAPIController {
 		return customerService.find(id);
 
 	}
+	
 
+	
 	@PostMapping("/addNewcustomer")
 	public String addCustomer(@RequestBody Customer customer) {
 		customer.setIsActive("Y");

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(NotRecordFoundException.class)
-	public ResponseEntity<Object> handleCustoemrNotFoundException(NotRecordFoundException ex, WebRequest request) {
-		return new ResponseEntity<>(ex, HttpStatus.NOT_FOUND);
+	public ResponseEntity<String> handleCustoemrNotFoundException(NotRecordFoundException ex, WebRequest request) {
+		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 }
