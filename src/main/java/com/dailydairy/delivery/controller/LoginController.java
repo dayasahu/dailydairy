@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dailydairy.delivery.entity.Customer;
 import com.dailydairy.delivery.model.LoginRequest;
-import com.dailydairy.delivery.repo.CustomerRepo;
 import com.dailydairy.delivery.service.CustomerService;
 
 @RestController
