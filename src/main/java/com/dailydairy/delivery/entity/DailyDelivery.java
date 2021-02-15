@@ -23,7 +23,7 @@ public class DailyDelivery {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String routIdDeliveryId;
+	private String routeDeliveryId;
 	private String customerId;
 	private String empId;
 	private Timestamp deliverydateTime;
@@ -35,11 +35,12 @@ public class DailyDelivery {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getRoutIdDeliveryId() {
-		return routIdDeliveryId;
+
+	public String getRouteDeliveryId() {
+		return routeDeliveryId;
 	}
-	public void setRoutIdDeliveryId(String routIdDeliveryId) {
-		this.routIdDeliveryId = routIdDeliveryId;
+	public void setRouteDeliveryId(String routeDeliveryId) {
+		this.routeDeliveryId = routeDeliveryId;
 	}
 	public String getCustomerId() {
 		return customerId;

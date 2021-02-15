@@ -38,7 +38,7 @@ public class Customer implements Serializable {
 	private String phoneNum;
 	private String email;
 	private String isActive;
-	private Long agentId;
+	private Long empId;
 	private Long subscriptionId;
 	private Long areaId;
 	private Long routeId;
@@ -100,12 +100,14 @@ public class Customer implements Serializable {
 		this.email = email;
 	}
 
-	public Long getAgentId() {
-		return agentId;
+	
+
+	public Long getEmpId() {
+		return empId;
 	}
 
-	public void setAgentId(Long agentId) {
-		this.agentId = agentId;
+	public void setEmpId(Long empId) {
+		this.empId = empId;
 	}
 
 	public Long getSubscriptionId() {
