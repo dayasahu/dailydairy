@@ -19,8 +19,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "Customer")
 @EntityListeners(AuditingEntityListener.class)
@@ -35,25 +33,26 @@ public class Customer implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String first_name;
-	private String last_name;
-	private Long phone_num;
+	private String firstName;
+	private String lastName;
+	private String phoneNum;
 	private String email;
 	private String isActive;
-	private Long agentId;
+	private Long empId;
 	private Long subscriptionId;
 	private Long areaId;
 	private Long routeId;
+	private String pwd;
 
-	@Column(nullable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	@CreatedDate
-	private Date createdAt;
-
-	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	@LastModifiedDate
-	private Date updatedAt;
+//	@Column(nullable = false, updatable = false)
+//	@Temporal(TemporalType.TIMESTAMP)
+//	@CreatedDate
+//	private Date createdAt;
+//
+//	@Column(nullable = false)
+//	@Temporal(TemporalType.TIMESTAMP)
+//	@LastModifiedDate
+//	private Date updatedAt;
 
 	public Long getId() {
 		return id;
@@ -63,28 +62,34 @@ public class Customer implements Serializable {
 		this.id = id;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	
+
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public Long getPhone_num() {
-		return phone_num;
+	public String getPhoneNum() {
+		return phoneNum;
 	}
 
-	public void setPhone_num(Long phone_num) {
-		this.phone_num = phone_num;
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public String getEmail() {
@@ -95,12 +100,14 @@ public class Customer implements Serializable {
 		this.email = email;
 	}
 
-	public Long getAgentId() {
-		return agentId;
+	
+
+	public Long getEmpId() {
+		return empId;
 	}
 
-	public void setAgentId(Long agentId) {
-		this.agentId = agentId;
+	public void setEmpId(Long empId) {
+		this.empId = empId;
 	}
 
 	public Long getSubscriptionId() {
@@ -127,21 +134,15 @@ public class Customer implements Serializable {
 		this.routeId = routeId;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
+
+	public String getPwd() {
+		return pwd;
 	}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 	public String getIsActive() {
 		return isActive;
 	}
@@ -149,5 +150,5 @@ public class Customer implements Serializable {
 	public void setIsActive(String isActive) {
 		this.isActive = isActive;
 	}
-	
+
 }

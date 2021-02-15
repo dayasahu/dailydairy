@@ -1,5 +1,7 @@
 package com.dailydairy.delivery.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.dailydairy.delivery.entity.Query;
-
 import com.dailydairy.delivery.service.QueryService;
 
 @RestController
@@ -22,9 +22,8 @@ public class QueryAPIController {
 	@Autowired
 	private QueryService service;
 
-	
 	@GetMapping("/getAllqueries")
-	public Iterable<Query> getQueries() {
+	public List<Query> getQueries() {
 		return service.findAll();
 
 	}
@@ -39,23 +38,23 @@ public class QueryAPIController {
 	public String addQuery(@RequestBody Query query) {
 		query.setIsActive("Y");
 		service.save(query);
-		return "New Customer Added Successfully";
+		return "New Query Added Successfully";
 
 	}
 
 	@PutMapping("/updateQuery")
 	public String updateQuery(@RequestBody Query query) {
 		service.save(query);
-		return "Customer Detail updated Successfully";
+		return "Query Detail updated Successfully";
 
 	}
-	
+
 	@DeleteMapping("/deActivateQuery/{id}")
 	public String deleteQuery(@PathVariable Long id) {
-		Query cust= service.find(id);
+		Query cust = service.find(id);
 		cust.setIsActive("N");
 		service.save(cust);
-		return "Customer Deleted Successfully";
+		return "Query Deleted Successfully";
 
 	}
 }

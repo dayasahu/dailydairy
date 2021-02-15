@@ -1,6 +1,5 @@
 package com.dailydairy.delivery.service;
 
-
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -16,25 +15,27 @@ import com.dailydairy.delivery.repo.CustomerRepo;
 @Transactional
 public class CustomerService {
 
-	
 	@Autowired
-	private  CustomerRepo repo;
-	
-	public Iterable<Customer>  findAll() {
-        return repo.findAll();
-    }
-     
-    public void save(Customer customer) {
-        repo.save(customer);
-    }
-     
-    public Customer find(Long id) {
-        return repo.findById(id).orElseThrow(() -> new NotRecordFoundException(id));
-    }
-     
-    public void delete(Long id) {
-        repo.deleteById(id);
-    }
-	
-	
+	private CustomerRepo repo;
+
+	public List<Customer> findAll() {
+		return repo.findAll();
+	}
+
+	public void save(Customer customer) {
+		repo.save(customer);
+	}
+
+	public Customer find(Long id) {
+		return repo.findById(id).orElseThrow(() -> new NotRecordFoundException());
+	}
+
+	public Customer findByPhoneNum(String phnNum) {
+		return repo.findByphoneNum(phnNum).orElseThrow(() -> new NotRecordFoundException());
+	}
+
+	public void delete(Long id) {
+		repo.deleteById(id);
+	}
+
 }
