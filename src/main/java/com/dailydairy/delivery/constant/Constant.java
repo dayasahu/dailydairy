@@ -46,5 +46,7 @@ public class Constant {
 			"WHERE\r\n" + 
 			"    subscription.isActive = 'Y'\r\n" + 
 			"        AND customer.is_active = 'Y'";
+	
+	public static final String VACATION_QUERY="SELECT * FROM dailyDairy.vacation where end_date= CURDATE()";
 
 }
