@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dailydairy.delivery.entity.DailyDelivery;
 import com.dailydairy.delivery.entity.RouteDelivery;
+import com.dailydairy.delivery.model.CustomerDeliveryList;
 import com.dailydairy.delivery.model.CustomerSubscr;
 import com.dailydairy.delivery.service.DailyDeliveryService;
 
@@ -56,7 +57,7 @@ public class DeliveryController {
 	}
 	
 	@GetMapping("/getTodayDelivery")
-	public List<CustomerSubscr> getTodayDelivery() {
+	public CustomerDeliveryList getTodayDelivery() {
 		return service.findCustomerSubscription();
 		
 	}

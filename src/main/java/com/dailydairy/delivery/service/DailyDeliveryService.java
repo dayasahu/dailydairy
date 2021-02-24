@@ -2,6 +2,7 @@ package com.dailydairy.delivery.service;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 import com.dailydairy.delivery.constant.Constant;
 import com.dailydairy.delivery.entity.DailyDelivery;
 import com.dailydairy.delivery.entity.RouteDelivery;
+import com.dailydairy.delivery.entity.Vacation;
+import com.dailydairy.delivery.model.CustomerDeliveryList;
 import com.dailydairy.delivery.model.CustomerSubscr;
 import com.dailydairy.delivery.repo.DailyDeliveryRepo;
 import com.dailydairy.delivery.repo.RouteDeliveryRepo;
@@ -27,6 +30,9 @@ public class DailyDeliveryService {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	private CustomerService customerservice;
 
 	@Autowired
 	private RouteDeliveryRepo routeDeliveryRepo;
@@ -47,7 +53,7 @@ public class DailyDeliveryService {
 		return dailydeliveryrepo.findAll();
 	}
 
-	public List<CustomerSubscr> findCustomerSubscription() {
+	public CustomerDeliveryList findCustomerSubscription() {
 
 		String sql = Constant.CUSTOMER_SUB_QUERY;
 
@@ -70,9 +76,32 @@ public class DailyDeliveryService {
 
 			customers.add(obj);
 		}
+		List<Vacation> vacationsList = customerservice.findTodayVacation();
 
-		return customers;
+		List<CustomerSubscr> availableCust = new ArrayList<>();
+		List<CustomerSubscr> vacationCustList = new ArrayList<>();
+		CustomerDeliveryList delList= new CustomerDeliveryList();
+		for (CustomerSubscr cust : customers) {
+			String cust1 = cust.getCustomer_id();
+			boolean onvacation=false;
+			for (Vacation vac : vacationsList) {
+				String vacCustemer = String.valueOf(vac.getCustomerId());
+				if (cust1.equalsIgnoreCase(vacCustemer)) {
+					onvacation=true;
+				} 
+			}
+		
+			if (onvacation) {
+				vacationCustList.add(cust);
+			} else {
+				availableCust.add(cust);
+			}
+		}
+		delList.setCustAvailable(availableCust);
+		delList.setCustOnVacation(vacationCustList);
+		
+		return delList;
 	}
+
 	
-	//private List<Vacation> findVacations
 }
