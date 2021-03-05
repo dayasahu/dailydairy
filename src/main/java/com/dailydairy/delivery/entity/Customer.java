@@ -44,15 +44,15 @@ public class Customer implements Serializable {
 	private Long routeId;
 	private String pwd;
 
-//	@Column(nullable = false, updatable = false)
-//	@Temporal(TemporalType.TIMESTAMP)
-//	@CreatedDate
-//	private Date createdAt;
-//
-//	@Column(nullable = false)
-//	@Temporal(TemporalType.TIMESTAMP)
-//	@LastModifiedDate
-//	private Date updatedAt;
+	@Column(nullable = false, updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreatedDate
+	private Date createdAt;
+
+	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@LastModifiedDate
+	private Date updatedAt;
 
 	public Long getId() {
 		return id;

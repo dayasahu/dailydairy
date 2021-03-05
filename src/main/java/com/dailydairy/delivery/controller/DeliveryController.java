@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dailydairy.delivery.entity.DailyDelivery;
 import com.dailydairy.delivery.entity.RouteDelivery;
+import com.dailydairy.delivery.model.CustomerDeliveryList;
+import com.dailydairy.delivery.model.CustomerSubscr;
 import com.dailydairy.delivery.service.DailyDeliveryService;
 
 @RestController
@@ -33,7 +35,7 @@ public class DeliveryController {
 
 	}
 	
-	@GetMapping("/startDailyDelivery")
+	@PostMapping("/startDailyDelivery")
 	public String startRouteDelivery(DailyDelivery dailyOrder) {
 		 service.saveDailyDelivery(dailyOrder);
 		 return "SUCCESS";
@@ -51,6 +53,12 @@ public class DeliveryController {
 	@GetMapping("/getAllRouteDelivery")
 	public List<RouteDelivery> getAllRouteDelivery() {
 		return service.getAllRouteDelivery();
+		
+	}
+	
+	@GetMapping("/getTodayDelivery")
+	public CustomerDeliveryList getTodayDelivery() {
+		return service.findCustomerSubscription();
 		
 	}
 }

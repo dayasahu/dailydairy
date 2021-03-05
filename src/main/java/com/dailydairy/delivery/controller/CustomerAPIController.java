@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dailydairy.delivery.entity.Customer;
+import com.dailydairy.delivery.entity.Vacation;
 import com.dailydairy.delivery.service.CustomerService;
 
 @RestController
@@ -58,6 +59,33 @@ public class CustomerAPIController {
 		customerService.save(cust);
 		return "Customer Deleted Successfully";
 
+	}
+	
+	@PostMapping("/addVacation")
+	public String setVacation(@RequestBody Vacation vacation) {
+		customerService.saveVacation(vacation);
+		return "vacation added successfully";
+
+	}
+
+	@GetMapping("/getCustVacation/{custId}")
+	public  List<Vacation> getVacation(@PathVariable String custId) {
+		
+		return customerService.findVacation(custId);
+
+	}
+	
+	@GetMapping("/getTodayVacation")
+	public  List<Vacation> getTodayVacation() {
+		
+		return customerService.findTodayVacation();
+
+	}
+	
+	@GetMapping("/getAllVacation")
+	public  List<Vacation> getAllVacation() {
+		return customerService.findAllVacation();
+	
 	}
 
 }

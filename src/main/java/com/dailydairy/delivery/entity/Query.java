@@ -26,6 +26,7 @@ public class Query {
 	private String assignedTo;
 	private String isActive;
 
+	
 	public Long getId() {
 		return id;
 	}
