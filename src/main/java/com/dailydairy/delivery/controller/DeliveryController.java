@@ -35,7 +35,7 @@ public class DeliveryController {
 
 	}
 	
-	@GetMapping("/startDailyDelivery")
+	@PostMapping("/startDailyDelivery")
 	public String startRouteDelivery(DailyDelivery dailyOrder) {
 		 service.saveDailyDelivery(dailyOrder);
 		 return "SUCCESS";

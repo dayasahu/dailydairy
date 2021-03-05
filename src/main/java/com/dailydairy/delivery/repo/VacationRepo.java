@@ -14,5 +14,5 @@ import com.dailydairy.delivery.entity.Vacation;
 public interface VacationRepo extends JpaRepository<Vacation, Long>{
 
 	Optional<List<Vacation>> findBycustomerId(Long custId);
-	Optional<List<Vacation>> findByendDate(LocalDate date);
+	List<Vacation> findByendDate(LocalDate date);
 }

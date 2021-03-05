@@ -55,7 +55,7 @@ public class CustomerService {
 	
 	public List<Vacation> findTodayVacation() {
 		LocalDate date = LocalDate.now();
-		return vacationRepo.findByendDate(date).orElseThrow(() -> new NotRecordFoundException());
+		return vacationRepo.findByendDate(date);
 	}
 
 

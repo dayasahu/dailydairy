@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.transaction.Transactional;
 
@@ -63,16 +64,16 @@ public class DailyDeliveryService {
 
 		for (Map row : rows) {
 			CustomerSubscr obj = new CustomerSubscr();
-			obj.setCustomer_id(String.valueOf(row.get("customer_id")));
-			obj.setCustrRouteId(String.valueOf(row.get("custrRouteId")));
-			obj.setFirst_name((String) row.get("first_name"));
-			obj.setProdId(String.valueOf(row.get("prodId")));
-			obj.setProdType((String) row.get("prodType"));
-			obj.setProductName((String) row.get("productName"));
-			obj.setQuantity((String) row.get("quantity"));
-			obj.setRate((String) row.get("rate").toString());
-			obj.setTotalCost(String.valueOf(row.get("totalCost")));
-			obj.setUnit((String) row.get("unit"));
+			obj.setCustomer_id(Objects.toString(row.get("customer_id"), ""));
+			obj.setCustrRouteId(Objects.toString(row.get("custrRouteId"), ""));
+			obj.setFirst_name(Objects.toString(row.get("first_name"), ""));
+			obj.setProdId(Objects.toString(row.get("prodId"), ""));
+			obj.setProdType(Objects.toString(row.get("prodType"), ""));
+			obj.setProductName(Objects.toString(row.get("productName"), ""));
+			obj.setQuantity(Objects.toString(row.get("quantity"), ""));
+			obj.setRate(Objects.toString(row.get("rate"), ""));
+			obj.setTotalCost(Objects.toString(row.get("totalCost"), ""));
+			obj.setUnit(Objects.toString(row.get("unit"), ""));
 
 			customers.add(obj);
 		}
