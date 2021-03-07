@@ -35,6 +35,11 @@ public class CustomerService {
 	public Customer find(Long id) {
 		return repo.findById(id).orElseThrow(() -> new NotRecordFoundException());
 	}
+	
+	public List<Customer> findByRouteId(Long routeId) {
+		return repo.findByrouteId(routeId).orElseThrow(() -> new NotRecordFoundException());
+	}
+
 
 	public Customer findByPhoneNum(String phnNum) {
 		return repo.findByphoneNum(phnNum).orElseThrow(() -> new NotRecordFoundException());

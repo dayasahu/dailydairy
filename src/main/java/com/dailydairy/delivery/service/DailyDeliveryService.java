@@ -1,8 +1,7 @@
 package com.dailydairy.delivery.service;
 
-import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -49,11 +48,19 @@ public class DailyDeliveryService {
 	public List<RouteDelivery> getAllRouteDelivery() {
 		return routeDeliveryRepo.findAll();
 	}
+	
+	public List<RouteDelivery>  getAllRouteDeliveryByRange(LocalDateTime startDate,LocalDateTime endDate) {
+		return routeDeliveryRepo.findAllBycreatedDateBetween(startDate, endDate);
+	}
 
 	public List<DailyDelivery> getAllDailyDelivery() {
 		return dailydeliveryrepo.findAll();
 	}
 
+	public List<DailyDelivery> getAllDailyDeliveryByRange(LocalDateTime startDate,LocalDateTime endDate) {
+		return dailydeliveryrepo.findAllBycreatedDateBetween(startDate, endDate);
+	}
+	
 	public CustomerDeliveryList findCustomerSubscription() {
 
 		String sql = Constant.CUSTOMER_SUB_QUERY;

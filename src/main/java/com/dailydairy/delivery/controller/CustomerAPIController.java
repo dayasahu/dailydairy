@@ -1,5 +1,6 @@
 package com.dailydairy.delivery.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dailydairy.delivery.entity.Customer;
@@ -23,20 +25,23 @@ public class CustomerAPIController {
 	@Autowired
 	private CustomerService customerService;
 
-	@GetMapping("/getallcustomers")
-	public List<Customer> getCustomers() {
-		return customerService.findAll();
+	@GetMapping("/findcustomers")
+	public List<Customer> getCustomer(@RequestParam(required = false) Long routeId,
+			@RequestParam(required = false) Long customerid) {
+
+		if (customerid != null) {
+			List<Customer> customers = new ArrayList<Customer>();
+			customers.add(customerService.find(customerid));
+			return customers;
+		}
+		if (routeId != null) {
+			return customerService.findByRouteId(routeId);
+		} else {
+			return customerService.findAll();
+		}
 
 	}
 
-	@GetMapping("/findcustomer/{id}")
-	public Customer getCustomer(@PathVariable Long id) {
-		return customerService.find(id);
-
-	}
-	
-
-	
 	@PostMapping("/addNewcustomer")
 	public String addCustomer(@RequestBody Customer customer) {
 		customer.setIsActive("Y");
@@ -60,7 +65,7 @@ public class CustomerAPIController {
 		return "Customer Deleted Successfully";
 
 	}
-	
+
 	@PostMapping("/addVacation")
 	public String setVacation(@RequestBody Vacation vacation) {
 		customerService.saveVacation(vacation);
@@ -69,23 +74,23 @@ public class CustomerAPIController {
 	}
 
 	@GetMapping("/getCustVacation/{custId}")
-	public  List<Vacation> getVacation(@PathVariable String custId) {
-		
+	public List<Vacation> getVacation(@PathVariable String custId) {
+
 		return customerService.findVacation(custId);
 
 	}
-	
+
 	@GetMapping("/getTodayVacation")
-	public  List<Vacation> getTodayVacation() {
-		
+	public List<Vacation> getTodayVacation() {
+
 		return customerService.findTodayVacation();
 
 	}
-	
+
 	@GetMapping("/getAllVacation")
-	public  List<Vacation> getAllVacation() {
+	public List<Vacation> getAllVacation() {
 		return customerService.findAllVacation();
-	
+
 	}
 
 }

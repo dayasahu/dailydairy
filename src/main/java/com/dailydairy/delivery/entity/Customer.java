@@ -1,7 +1,7 @@
 package com.dailydairy.delivery.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,19 +10,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "Customer")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = { "createdAt", "updatedAt" }, allowGetters = true)
+@JsonIgnoreProperties(value = { "createdBy", "createdDate" ,"modifiedBy","modifiedDate"}, allowGetters = true)
 public class Customer implements Serializable {
 
 	/**
@@ -44,16 +45,25 @@ public class Customer implements Serializable {
 	private Long routeId;
 	private String pwd;
 
-	@Column(nullable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	@CreatedDate
-	private Date createdAt;
+	
+	  @CreatedBy
+	  @NotNull
+	  @Column(name = "created_by", nullable = false, length = 50, updatable =  false)
+	  private String createdBy="NA";
 
-	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	@LastModifiedDate
-	private Date updatedAt;
+	  @CreatedDate
+	  @NotNull
+	  @Column(name = "created_date", nullable = false, updatable = false)
+	  private LocalDateTime createdDate = LocalDateTime.now();
 
+	  @LastModifiedBy
+	  @Column(name = "modified_by", length = 50)
+	  private String modifiedBy="NA";
+
+	  @LastModifiedDate
+	  @Column(name = "modified_date")
+	  private LocalDateTime modifiedDate = LocalDateTime.now();
+	  
 	public Long getId() {
 		return id;
 	}
