@@ -4,10 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dailydairy.delivery.entity.DailyDelivery;
@@ -41,13 +44,13 @@ public class DeliveryController {
 	
 
 
-	@PostMapping("/getCustomerDelivery")
-	public List<DailyDelivery> getDeliveriesByFilter(@RequestBody DeliveryFilter filter) {
+	@GetMapping("/getCustomerDelivery")
+	public List<DailyDelivery> getCustomerDelivery(@RequestParam(required = false)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,@RequestParam(required = false)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,@RequestParam(required = false) String routeId) {
 		
-		if(filter.getStartDate()!=null && filter.getEndDate()!=null) {
-			return service.getAllDailyDeliveryByRange(filter.getStartDate(),filter.getEndDate());
-		}else if(filter.getRouteId()!=null) {
-			return service.getAllDailyDeliveryByRouteId(filter.getRouteId());	
+		if(startDate!=null && endDate!=null) {
+			return service.getAllDailyDeliveryByRange(startDate,endDate);
+		}else if(routeId!=null) {
+			return service.getAllDailyDeliveryByRouteId(routeId);	
 		}
 		return service.getAllDailyDelivery();
 		
@@ -55,13 +58,14 @@ public class DeliveryController {
 	}
 	
 	
-	@PostMapping("/getRouteDelivery")
-	public List<RouteDelivery> getAllRouteDelivery(@RequestBody DeliveryFilter filter) {
-		if(filter.getStartDate()!=null && filter.getEndDate()!=null) {
-			return service.getAllRouteDeliveryByRange(filter.getStartDate(),filter.getEndDate());
+	@GetMapping("/getRouteDelivery")
+	public List<RouteDelivery> getRouteDelivery(@RequestParam(required = false)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,@RequestParam(required = false)  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,@RequestParam(required = false) String routeId) {
+		
+			if(startDate!=null && endDate!=null) {
+			return service.getAllRouteDeliveryByRange(startDate,endDate);
 		}
-		else if(filter.getRouteId()!=null) {
-			return service.getAllRouteDeliveryByRouteId(filter.getRouteId());
+		else if(routeId!=null) {
+			return service.getAllRouteDeliveryByRouteId(routeId);	
 		}
 		return service.getAllRouteDelivery();
 		
@@ -71,6 +75,15 @@ public class DeliveryController {
 	@GetMapping("/getTodayToBeDelivered")
 	public CustomerDeliveryList getTodayDelivery() {
 		return service.findCustomerSubscription();
+		
+	}
+	
+	@GetMapping("/getTodayDelivered")
+	public List<DailyDelivery> getTodayDelivered(@RequestParam(required = false) String routeId) {
+		if(routeId!=null) {
+			return service.getTodayCompletedDeliveriesbyRouteId(routeId);
+		}
+		return service.getTodayCompletedDeliveries();
 		
 	}
 }

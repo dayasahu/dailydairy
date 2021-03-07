@@ -70,6 +70,13 @@ public class DailyDeliveryService {
 		return dailydeliveryrepo.findAllByrouteId(routeId);
 	}
 	
+	public List<DailyDelivery> getTodayCompletedDeliveries() {
+		return dailydeliveryrepo.findAllBydeliveredDateAndstatus(LocalDate.now().toString());
+	}
+	public List<DailyDelivery> getTodayCompletedDeliveriesbyRouteId(String routeId) {
+		return dailydeliveryrepo.findAllBydeliveredDateAndstatusAndRouteId(LocalDate.now().toString(),routeId);
+	}
+	
 	public CustomerDeliveryList findCustomerSubscription() {
 
 		String sql = Constant.CUSTOMER_SUB_QUERY;
