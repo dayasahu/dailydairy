@@ -1,5 +1,6 @@
 package com.dailydairy.delivery.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -34,13 +35,16 @@ public class RouteDelivery {
 	private String loadQuantity;
 	private String returnedQuantity;
 	private String status;
+	private LocalDate deliveryDate;
 	
-	  @CreatedBy
+
+	@CreatedBy
 	  @NotNull
 	  @Column(name = "created_by", nullable = false, length = 50, updatable =  false)
 	  private String createdBy="NA";
 
-	  @CreatedDate
+	
+	@CreatedDate
 	  @NotNull
 	  @Column(name = "created_date", nullable = false, updatable = false)
 	  private LocalDateTime createdDate = LocalDateTime.now();
@@ -95,4 +99,12 @@ public class RouteDelivery {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public LocalDate getDeliveryDate() {
+		return deliveryDate;
+	}
+	public void setDeliveryDate(LocalDate deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}	
+	
 }

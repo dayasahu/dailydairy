@@ -1,5 +1,6 @@
 package com.dailydairy.delivery.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,49 +23,48 @@ public class DeliveryController {
 	@Autowired
 	DailyDeliveryService service;
 	
-	@PostMapping("/markDelivery")
+	@PostMapping("/addUpdateCustomerDelivery")
 	public String addDelivery(DailyDelivery dailyOrder) {
+		
 		 service.saveDailyDelivery(dailyOrder);
 		 return "SUCCESS";
 
 	}
 	
-	@PostMapping("/routeDelivery")
+	@PostMapping("/addUpdateRouteDelivery")
 	public String addrouteDelivery(RouteDelivery routeDelivery) {
+		
 		 service.saveRouteDelivery(routeDelivery);
 		 return "SUCCESS";
 
 	}
 	
-	@PostMapping("/startDailyDelivery")
-	public String startRouteDelivery(DailyDelivery dailyOrder) {
-		 service.saveDailyDelivery(dailyOrder);
-		 return "SUCCESS";
 
-	}
-	
-	
 
-	@PostMapping("/getCustomerDeliveries")
-	public List<DailyDelivery> getDeliveriesByFilter(@RequestBody DeliveryFilter range) {
+	@PostMapping("/getCustomerDelivery")
+	public List<DailyDelivery> getDeliveriesByFilter(@RequestBody DeliveryFilter filter) {
 		
-		if(range.getStartDate()!=null && range.getEndDate()!=null) {
-			return service.getAllDailyDeliveryByRange(range.getStartDate(),range.getEndDate());
-		}else {
+		if(filter.getStartDate()!=null && filter.getEndDate()!=null) {
+			return service.getAllDailyDeliveryByRange(filter.getStartDate(),filter.getEndDate());
+		}else if(filter.getRouteId()!=null) {
+			return service.getAllDailyDeliveryByRouteId(filter.getRouteId());	
+		}
 		return service.getAllDailyDelivery();
-		}
+		
 		
 	}
 	
 	
-	@GetMapping("/getAllRouteDelivery")
-	public List<RouteDelivery> getAllRouteDelivery(@RequestBody DeliveryFilter range) {
-		if(range.getStartDate()!=null && range.getEndDate()!=null) {
-			return service.getAllRouteDeliveryByRange(range.getStartDate(),range.getEndDate());
+	@PostMapping("/getRouteDelivery")
+	public List<RouteDelivery> getAllRouteDelivery(@RequestBody DeliveryFilter filter) {
+		if(filter.getStartDate()!=null && filter.getEndDate()!=null) {
+			return service.getAllRouteDeliveryByRange(filter.getStartDate(),filter.getEndDate());
 		}
-		else {
+		else if(filter.getRouteId()!=null) {
+			return service.getAllRouteDeliveryByRouteId(filter.getRouteId());
+		}
 		return service.getAllRouteDelivery();
-		}
+		
 		
 	}
 	

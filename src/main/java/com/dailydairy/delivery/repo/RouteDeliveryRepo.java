@@ -1,5 +1,6 @@
 package com.dailydairy.delivery.repo;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import com.dailydairy.delivery.entity.RouteDelivery;
 
 @Repository
 public interface RouteDeliveryRepo extends JpaRepository<RouteDelivery, Long> {
-	List<RouteDelivery> findAllBycreatedDateBetween(LocalDateTime startDate, LocalDateTime endDate);
+	List<RouteDelivery> findAllBydeliveryDateBetween(LocalDate startDate,LocalDate endDate);
+	List<RouteDelivery> findAllByrouteId(String routeId);
+	
 
 }

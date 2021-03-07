@@ -1,6 +1,8 @@
 package com.dailydairy.delivery.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,6 +33,7 @@ public class DailyDelivery {
 	private Long id;
 	private String routeDeliveryId;
 	private String customerId;
+	private String routeId;
 	private String empId;
 	private String status;
 	private String productId;
@@ -39,6 +42,8 @@ public class DailyDelivery {
 	private String unit;
 	private String prodType;
 	private String totalCost;
+	private LocalDate deliveredDate;
+	
 	
 	@CreatedBy
 	  @NotNull
@@ -153,6 +158,17 @@ public class DailyDelivery {
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
-		
+	public LocalDate getDeliveredDate() {
+		return deliveredDate;
+	}
+	public void setDeliveredDate(LocalDate deliveredDate) {
+		this.deliveredDate = deliveredDate;
+	}
 	
+	public String getRouteId() {
+		return routeId;
+	}
+	public void setRouteId(String routeId) {
+		this.routeId = routeId;
+	}
 }

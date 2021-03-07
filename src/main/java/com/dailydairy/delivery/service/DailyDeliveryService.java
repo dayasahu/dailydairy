@@ -1,5 +1,6 @@
 package com.dailydairy.delivery.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,16 +50,24 @@ public class DailyDeliveryService {
 		return routeDeliveryRepo.findAll();
 	}
 	
-	public List<RouteDelivery>  getAllRouteDeliveryByRange(LocalDateTime startDate,LocalDateTime endDate) {
-		return routeDeliveryRepo.findAllBycreatedDateBetween(startDate, endDate);
+	public List<RouteDelivery>  getAllRouteDeliveryByRange(LocalDate startDate,LocalDate endDate) {
+		return routeDeliveryRepo.findAllBydeliveryDateBetween(startDate, endDate);
+	}
+	
+	public List<RouteDelivery>  getAllRouteDeliveryByRouteId(String routeId) {
+		return routeDeliveryRepo.findAllByrouteId(routeId);
 	}
 
 	public List<DailyDelivery> getAllDailyDelivery() {
 		return dailydeliveryrepo.findAll();
 	}
 
-	public List<DailyDelivery> getAllDailyDeliveryByRange(LocalDateTime startDate,LocalDateTime endDate) {
-		return dailydeliveryrepo.findAllBycreatedDateBetween(startDate, endDate);
+	public List<DailyDelivery> getAllDailyDeliveryByRange(LocalDate startDate,LocalDate endDate) {
+		return dailydeliveryrepo.findAllBydeliveredDateBetween(startDate, endDate);
+	}
+	
+	public List<DailyDelivery> getAllDailyDeliveryByRouteId(String routeId) {
+		return dailydeliveryrepo.findAllByrouteId(routeId);
 	}
 	
 	public CustomerDeliveryList findCustomerSubscription() {
