@@ -23,7 +23,7 @@ import com.sun.istack.NotNull;
 @Entity
 @Table(name = "Customer")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = { "createdBy", "createdDate" ,"modifiedBy","modifiedDate"}, allowGetters = true)
+@JsonIgnoreProperties(value = { "createdBy", "createdDate", "modifiedBy", "modifiedDate" }, allowGetters = true)
 public class Customer implements Serializable {
 
 	/**
@@ -37,6 +37,9 @@ public class Customer implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String phoneNum;
+
+	private String full_address;
+
 	private String email;
 	private String isActive;
 	private Long empId;
@@ -45,25 +48,24 @@ public class Customer implements Serializable {
 	private Long routeId;
 	private String pwd;
 
-	
-	  @CreatedBy
-	  @NotNull
-	  @Column(name = "created_by", nullable = false, length = 50, updatable =  false)
-	  private String createdBy="NA";
+	@CreatedBy
+	@NotNull
+	@Column(name = "created_by", nullable = false, length = 50, updatable = false)
+	private String createdBy = "NA";
 
-	  @CreatedDate
-	  @NotNull
-	  @Column(name = "created_date", nullable = false, updatable = false)
-	  private LocalDateTime createdDate = LocalDateTime.now();
+	@CreatedDate
+	@NotNull
+	@Column(name = "created_date", nullable = false, updatable = false)
+	private LocalDateTime createdDate = LocalDateTime.now();
 
-	  @LastModifiedBy
-	  @Column(name = "modified_by", length = 50)
-	  private String modifiedBy="NA";
+	@LastModifiedBy
+	@Column(name = "modified_by", length = 50)
+	private String modifiedBy = "NA";
 
-	  @LastModifiedDate
-	  @Column(name = "modified_date")
-	  private LocalDateTime modifiedDate = LocalDateTime.now();
-	  
+	@LastModifiedDate
+	@Column(name = "modified_date")
+	private LocalDateTime modifiedDate = LocalDateTime.now();
+
 	public Long getId() {
 		return id;
 	}
@@ -71,8 +73,6 @@ public class Customer implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	
 
 	public String getFirstName() {
 		return firstName;
@@ -110,8 +110,6 @@ public class Customer implements Serializable {
 		this.email = email;
 	}
 
-	
-
 	public Long getEmpId() {
 		return empId;
 	}
@@ -144,7 +142,6 @@ public class Customer implements Serializable {
 		this.routeId = routeId;
 	}
 
-
 	public String getPwd() {
 		return pwd;
 	}
@@ -159,6 +156,14 @@ public class Customer implements Serializable {
 
 	public void setIsActive(String isActive) {
 		this.isActive = isActive;
+	}
+
+	public String getFull_address() {
+		return full_address;
+	}
+
+	public void setFull_address(String full_address) {
+		this.full_address = full_address;
 	}
 
 }
