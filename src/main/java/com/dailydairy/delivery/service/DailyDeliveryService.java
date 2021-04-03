@@ -97,6 +97,9 @@ public class DailyDeliveryService {
 			obj.setRate(Objects.toString(row.get("rate"), ""));
 			obj.setTotalCost(Objects.toString(row.get("totalCost"), ""));
 			obj.setUnit(Objects.toString(row.get("unit"), ""));
+			obj.setPhone_num(Objects.toString(row.get("phone_num"), ""));
+			obj.setFull_address(Objects.toString(row.get("full_address"), ""));
+			obj.setLast_name(Objects.toString(row.get("last_name"), ""));
 
 			customers.add(obj);
 		}

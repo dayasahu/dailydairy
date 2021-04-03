@@ -3,6 +3,9 @@ package com.dailydairy.delivery.model;
 public class CustomerSubscr {
 
 	private String first_name;
+	private String last_name;
+	private String phone_num;
+	private String full_address;
 	private String customer_id;
 	private String custrRouteId;
 	private String quantity;
@@ -12,6 +15,26 @@ public class CustomerSubscr {
 	private String unit;
 	private String prodType;
 	private String totalCost;
+	
+	public String getLast_name() {
+		return last_name;
+	}
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+	public String getPhone_num() {
+		return phone_num;
+	}
+	public void setPhone_num(String phone_num) {
+		this.phone_num = phone_num;
+	}
+	public String getFull_address() {
+		return full_address;
+	}
+	public void setFull_address(String full_address) {
+		this.full_address = full_address;
+	}
+	
 	public String getFirst_name() {
 		return first_name;
 	}
